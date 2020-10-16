@@ -32,6 +32,12 @@ export default defineConfig({
           title: '搜索',
           auth: true,
         },
+        {
+          path: '/observer',
+          component: './observer',
+          title: '测试',
+          auth: true,
+        },
       ],
     },
   ],
