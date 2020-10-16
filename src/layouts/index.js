@@ -1,10 +1,17 @@
 import styles from './index.css';
+import { ErrorBoundary, MenuBar } from '@/components/index';
+import { useLocation } from 'umi';
 
 function BasicLayout(props) {
+  const location = useLocation();
+  console.log(location);
+  const paths = ['/', '/order', '/user'];
   return (
-    <div className={styles.normal}>
-      <h1 className={styles.title}>Yay! Welcome to umi!</h1>
-      {props.children}
+    <div>
+      <MenuBar show={paths.includes(location.pathname)} pathname={location.pathname} />
+      <ErrorBoundary>
+        {props.children}
+      </ErrorBoundary>
     </div>
   );
 }

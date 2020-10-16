@@ -1,30 +1,32 @@
+import { defineConfig } from 'umi';
 
-// ref: https://umijs.org/config/
-export default {
-  treeShaking: true,
+export default defineConfig({
+  nodeModulesTransform: {
+    type: 'none',
+  },
   routes: [
     {
       path: '/',
-      component: '../layouts/index',
+      component: '@/layouts/index',
       routes: [
-        { path: '/', component: '../pages/index' }
+        {
+          path: '/',
+          component: './home/index',
+          title: '首页'
+        },
+        {
+          path: '/order',
+          component: './order/index',
+          title: '订单',
+          auth: true
+        },
+        {
+          path: '/user',
+          component: './user/index',
+          title: '我的',
+          auth: true
+        }
       ]
     }
   ],
-  plugins: [
-    // ref: https://umijs.org/plugin/umi-plugin-react.html
-    ['umi-plugin-react', {
-      antd: true,
-      dva: false,
-      dynamicImport: false,
-      title: 'client',
-      dll: false,
-      
-      routes: {
-        exclude: [
-          /components\//,
-        ],
-      },
-    }],
-  ],
-}
+});
