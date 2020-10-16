@@ -3,9 +3,15 @@ import Header from './components/header';
 import Search from './components/search';
 import Hot from './components/hot';
 import './index.less';
+import { useHttpHook } from '@/hooks';
 
 export default function(props) {
-  const [state, setState] = useState();
+  const [citys, citysLoading] = useHttpHook({
+    url: '/commons/citys',
+  });
+  const [houses, housesLoading] = useHttpHook({
+    url: '/house/hot',
+  });
 
   useEffect(() => {
 
@@ -16,9 +22,9 @@ export default function(props) {
       {/*header区域*/}
       <Header />
       {/*search区域*/}
-      <Search />
+      <Search citys={citys} citysLoading={citysLoading} />
       {/*hot区域*/}
-      <Hot />
+      <Hot houses={houses}/>
     </div>
   );
 }
