@@ -12,21 +12,27 @@ export default defineConfig({
         {
           path: '/',
           component: './home/index',
-          title: '首页'
+          title: '首页',
         },
         {
           path: '/order',
           component: './order/index',
           title: '订单',
-          auth: true
+          auth: true,
         },
         {
           path: '/user',
           component: './user/index',
           title: '我的',
-          auth: true
-        }
-      ]
-    }
+          auth: true,
+        },
+        {
+          path: '/search',
+          component: './search/index',
+          title: '搜索',
+          auth: true,
+        },
+      ],
+    },
   ],
 });
