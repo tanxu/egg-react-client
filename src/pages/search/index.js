@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SearchBar, ActivityIndicator } from 'antd-mobile';
-import { useHttpHook, useObserverHook } from '@/hooks';
+import { useHttpHook, useObserverHook, useImgHook } from '@/hooks';
 
 import { useLocation } from 'umi';
 import './index.less';
@@ -47,6 +47,9 @@ export default function(props) {
       }
     }
   }, [housesLoading, houseSubmitName]);
+
+  useImgHook('.item-img', (entries) => {
+  }, null);
 
   /*
   * 1, 监听loading是否展示出来
@@ -98,7 +101,7 @@ export default function(props) {
           <div className="result">
             {houseLists.map(item => (
               <div className="item" key={item.id}>
-                <img src={item.img} alt="" className="img" />
+                <img data-src={item.img} src={require('../../assets/blank.png')} alt="" className="item-img" />
                 <div className="item-right">
                   <div className="title">{item.title}</div>
                   <div className="price">{item.price}</div>
