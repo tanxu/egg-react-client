@@ -36,6 +36,7 @@ export default class Modal extends Component {
     };
   }
 
+  //
   componentWillReceiveProps(nextProps){
     this.setState({
       showModal: nextProps.show
