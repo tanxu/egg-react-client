@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { SearchBar, ActivityIndicator } from 'antd-mobile';
 import { useHttpHook, useObserverHook, useImgHook } from '@/hooks';
-
+import { ShowLoading } from '@/components';
 import { useLocation } from 'umi';
+import { CommonEnum } from '@/enums';
 import './index.less';
 
 export default function(props) {
@@ -10,12 +11,7 @@ export default function(props) {
   const { query } = useLocation();
   console.log(query);
   // 分页状态
-  const [page, setPage] = useState({
-    // 每页展示的条数
-    pageSize: 8,
-    // 当前页码
-    pageNum: 1,
-  });
+  const [page, setPage] = useState(CommonEnum.PAGE);
   const [houseSubmitName, setHouseSubmitName] = useState('');
   const [showLoading, setShowLoading] = useState(true);
   const [houseLists, setHouseLists] = useState([]);
@@ -58,7 +54,7 @@ export default function(props) {
   * 4, 监听loading的变化,拼装数据
   * */
   // 1, 监听loading是否展示出来
-  useObserverHook('#loading', (entries) => {
+  useObserverHook('#' + CommonEnum.LOADING_ID, (entries) => {
     console.log('entries', entries);
     if (!housesLoading && entries[0].isIntersecting) {
       // 2, 修改分页数据
@@ -108,7 +104,7 @@ export default function(props) {
                 </div>
               </div>
             ))}
-            {showLoading ? <div id='loading'>loading</div> : <div>没有数据啦</div>}
+            <ShowLoading showLoading={showLoading} />
           </div>
       }
     </div>
