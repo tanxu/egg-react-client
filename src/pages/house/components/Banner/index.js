@@ -19,15 +19,11 @@ export default function(props) {
   return (
     <AwesomeSwiper className='banner' config={config}>
       <div className='swiper-wrapper'>
-        <div className="swiper-slide">
-          <img src={'http://img2.mukewang.com/szimg/5ad05dc00001eae705400300-360-202.jpg'} alt="" />
-        </div>
-        <div className="swiper-slide">
-          <img src={'http://img2.mukewang.com/szimg/5ad05dc00001eae705400300-360-202.jpg'} alt="" />
-        </div>
-        <div className="swiper-slide">
-          <img src={'http://img2.mukewang.com/szimg/5ad05dc00001eae705400300-360-202.jpg'} alt="" />
-        </div>
+        {props?.banner?.map(item => (
+          <div className="swiper-slide" key={item}>
+            <img src={item} alt="" />
+          </div>
+        ))}
       </div>
       <div className="swiper-pagination"></div>
     </AwesomeSwiper>

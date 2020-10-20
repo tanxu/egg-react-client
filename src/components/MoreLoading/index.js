@@ -3,7 +3,7 @@ import './index.less';
 import PropTypes from 'prop-types';
 import { CommonEnum } from '@/enums';
 
-export default function ShowLoading(props) {
+export default function MoreLoading(props) {
   const [state, setState] = useState();
 
   useEffect(() => {
@@ -17,9 +17,9 @@ export default function ShowLoading(props) {
     </div>
   );
 }
-ShowLoading.defaultProps = {
+MoreLoading.defaultProps = {
   showLoading: true,
 };
-ShowLoading.propTypes = {
+MoreLoading.propTypes = {
   showLoading: PropTypes.bool,
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SearchBar, ActivityIndicator } from 'antd-mobile';
 import { useHttpHook, useObserverHook, useImgHook } from '@/hooks';
-import { ShowLoading } from '@/components';
+import { MoreLoading } from '@/components';
 import { useLocation } from 'umi';
 import { CommonEnum } from '@/enums';
 import './index.less';
@@ -104,7 +104,7 @@ export default function(props) {
                 </div>
               </div>
             ))}
-            <ShowLoading showLoading={showLoading} />
+            <MoreLoading showLoading={showLoading} />
           </div>
       }
     </div>

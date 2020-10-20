@@ -15,7 +15,8 @@
     "react": "^16.8.6",
     "react-awesome-swiper": "^1.4.16",
     "react-dom": "^16.8.6",
-    "react-icons": "^3.11.0"
+    "react-icons": "^3.11.0",
+    "think-react-store": "^1.6.6"
   },
   "devDependencies": {
     "@umijs/preset-react": "^1.5.19",
