@@ -12,6 +12,7 @@
     "dayjs": "^1.9.3",
     "project-libs": "^1.1.3",
     "prop-types": "^15.7.2",
+    "rc-form": "^2.4.11",
     "react": "^16.8.6",
     "react-awesome-swiper": "^1.4.16",
     "react-dom": "^16.8.6",
