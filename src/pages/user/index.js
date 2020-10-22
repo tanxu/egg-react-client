@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { history } from 'umi';
 import { List } from 'antd-mobile';
+import { useStoreHook } from 'think-react-store';
 import './index.less';
 
 export default function(props) {
   const [state, setState] = useState();
-
+  const { user: { username, tel, sign, avatar, getUserAsync } } = useStoreHook();
   useEffect(() => {
-
+    getUserAsync({
+      id: 10,
+    });
   }, []);
   const handleClick = () => {
     history.push({
@@ -23,9 +26,9 @@ export default function(props) {
       <div className={'info'}>
         <div className="set" onClick={handleClick}>设置</div>
         <div className="user">
-          <img src="" alt="" />
-          <div className="tel">tel</div>
-          <div className="sign">sign</div>
+          <img src={avatar} alt="" />
+          <div className="tel">{tel}</div>
+          <div className="sign">{sign}</div>
         </div>
       </div>
       {/*列表*/}

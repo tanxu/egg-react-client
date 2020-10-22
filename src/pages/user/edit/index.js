@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { List, ImagePicker, Toast, InputItem, Button } from 'antd-mobile';
+import { useStoreHook } from 'think-react-store';
 import { createForm } from 'rc-form';
 
 function Edit(props) {
   const [files, setFiles] = useState([]);
   const { getFieldProps, validateFields } = props.form;
-
+  const { user: { editUserAsync } } = useStoreHook();
   useEffect(() => {
     console.log(props);
   }, []);
@@ -27,7 +28,12 @@ function Edit(props) {
         Toast.fail('请将信息补充完整');
         return;
       }
-      // 发送修改
+      // TODO 发送修改
+      editUserAsync({
+        img: files[0].url,
+        tel: value.tel,
+        sign: value.sign,
+      });
     });
   };
   return (
