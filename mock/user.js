@@ -17,4 +17,16 @@ export default {
       data: 'ok',
     });
   },
+  'post /api/user/login': (req, res) => {
+    res.json({
+      status: 200,
+      data: 'ok',
+    });
+  },
+  'post /api/user/register': (req, res) => {
+    res.json({
+      status: 200,
+      data: 'ok',
+    });
+  },
 };
