@@ -3,6 +3,7 @@ import { ActivityIndicator } from 'antd-mobile';
 import { isEmpty } from 'project-libs';
 import OrderItem from '../Item';
 import { MoreLoading } from '@/components';
+import { OrderSkeletons } from '@/skeletons';
 
 export default function(props) {
   const [state, setState] = useState();
@@ -15,7 +16,7 @@ export default function(props) {
     <div>
       {
         isEmpty(props?.orders) ?
-          <ActivityIndicator toast /> :
+          <OrderSkeletons /> :
           <div className="tab-lists">
             {props.orders.map(item => (
               <OrderItem type={props.type} key={item.id} {...item} />
@@ -23,6 +24,7 @@ export default function(props) {
             <MoreLoading showLoading={props.showLoading} />
           </div>
       }
+
     </div>
   );
 }
