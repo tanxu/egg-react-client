@@ -1,6 +1,7 @@
 import { Http } from '@/utils';
 import { Toast } from 'antd-mobile';
 import { history } from 'umi';
+import { cookie, urlGet } from 'project-libs';
 
 export default {
   state: {
@@ -55,10 +56,12 @@ export default {
         body: payload,
       });
       if (result) {
-        Toast.success('登录成功');
+        const from = urlGet('from');
+        cookie.set('user', JSON.stringify(result));
         history.push({
-          pathname: '/user',
+          pathname: from || '/user',
         });
+        Toast.success('登录成功');
       }
     },
     async registerAsync(dispatch, rootState, payload) {
@@ -67,6 +70,7 @@ export default {
         body: payload,
       });
       if (result) {
+        cookie.set('user', JSON.stringify(result));
         Toast.success('注册成功');
         history.push({
           pathname: '/login',

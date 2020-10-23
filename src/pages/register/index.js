@@ -40,21 +40,15 @@ function Register(props) {
   return (
     <div className={'register-page'}>
       <List renderHeader={() => '用户注册'}>
-        <List.Item>
-          <InputItem {...getFieldProps('username', { rules: [{ required: true }] })} placeholder={'用户名'}>
-            用户名:
-          </InputItem>
-        </List.Item>
-        <List.Item>
-          <InputItem {...getFieldProps('password', { rules: [{ required: true }] })} placeholder={'密码'}>
-            密码:
-          </InputItem>
-        </List.Item>
-        <List.Item>
-          <InputItem {...getFieldProps('rePassword', { rules: [{ required: true }] })} placeholder={'确认密码'}>
-            确认密码:
-          </InputItem>
-        </List.Item>
+        <InputItem {...getFieldProps('username', { rules: [{ required: true }] })} placeholder={'用户名'}>
+          用户名:
+        </InputItem>
+        <InputItem {...getFieldProps('password', { rules: [{ required: true }] })} placeholder={'密码'}>
+          密码:
+        </InputItem>
+        <InputItem {...getFieldProps('rePassword', { rules: [{ required: true }] })} placeholder={'确认密码'}>
+          确认密码:
+        </InputItem>
       </List>
       <Button type={'warning'} onClick={handleSubmit}>注册</Button>
       <div className="login" onClick={handleClick}>已有帐户?去登录</div>

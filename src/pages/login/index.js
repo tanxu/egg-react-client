@@ -36,16 +36,12 @@ function Login(props) {
   return (
     <div className={'login-page'}>
       <List renderHeader={() => '用户登录'}>
-        <List.Item>
           <InputItem {...getFieldProps('username', { rules: [{ required: true }] })} placeholder={'用户名'}>
             用户名:
           </InputItem>
-        </List.Item>
-        <List.Item>
           <InputItem {...getFieldProps('password', { rules: [{ required: true }] })} placeholder={'密码'}>
             密码:
           </InputItem>
-        </List.Item>
       </List>
       <Button type={'warning'} onClick={handleSubmit}>登录</Button>
       <div className="register" onClick={handleClick}>没有帐户?去注册</div>
