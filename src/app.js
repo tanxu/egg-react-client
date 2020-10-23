@@ -6,7 +6,6 @@ export function onRouteChange(route) {
 
   try {
     const user = JSON.parse(cookie.get('user'));
-    console.log('nowP', nowPath.auth)
     if (nowPath.length === 1 && nowPath[0].auth && !user) {
       // 未登录
       history.push({

@@ -6,7 +6,6 @@ import * as store from '../stores';
 
 function BasicLayout(props) {
   const location = useLocation();
-  console.log(location);
   const paths = ['/', '/order', '/user'];
   return (
     <StoreProvider store={store}>

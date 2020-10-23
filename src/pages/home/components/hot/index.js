@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { history } from 'umi';
 
-export default function(props) {
+function Hot(props) {
+  console.log('hot render');
   // const [houses, setHouses] = useState([
   //   {
   //     id: 1,
@@ -64,3 +65,5 @@ export default function(props) {
     </div>
   );
 }
+
+export default memo(Hot)

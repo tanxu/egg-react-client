@@ -32,7 +32,6 @@ export default function useImgHook(ele, callback, watch = []) {
       });
     }
     return () => {
-      console.log('out');
       if (!isEmpty(nodes) && observer) {
         observer.disconnect();
       }

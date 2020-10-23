@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { cookie } from 'project-libs';
 import { Link } from 'umi';
 
-export default function(props) {
+function Header(props) {
   const [state, setState] = useState();
-
+  console.log('header render');
   useEffect(() => {
-    console.log('ddd', cookie.get('user'))
   }, []);
 
   return (
@@ -19,3 +18,4 @@ export default function(props) {
     </div>
   );
 }
+export default memo(Header)

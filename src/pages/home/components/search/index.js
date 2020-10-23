@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { Picker, List, Calendar, Button } from 'antd-mobile';
 import dayjs from 'dayjs';
 import { history } from 'umi';
 import { Toast } from 'antd-mobile';
 
-export default function(props) {
+function Search(props) {
   // const [citys, setCitys] = useState([
   //   [{ label: '杭州', value: '10001' }, { label: '苏州', value: '10002' }],
   // ]);
 
+  console.log('search render');
   const [selectedCity, setSelectedCity] = useState(['10001']);
   const [times, setTimes] = useState('可选时间');
   const [dateShow, setDateShow] = useState(false);
@@ -18,7 +19,6 @@ export default function(props) {
   }, []);
 
   const handleCityChange = (value) => {
-    console.log('va', value);
     setSelectedCity(value);
   };
   const handleDate = () => {
@@ -68,3 +68,15 @@ export default function(props) {
     </div>
   );
 }
+
+function areEqual(prevProps, nextProps) {
+  // console.log('prev', prevProps);
+  // console.log('next', nextProps);
+  if (prevProps.citys === nextProps.citys && prevProps.citysLoading === nextProps.citysLoading) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export default memo(Search, areEqual);
