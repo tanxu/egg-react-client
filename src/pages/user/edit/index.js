@@ -4,11 +4,12 @@ import { useStoreHook } from 'think-react-store';
 import { createForm } from 'rc-form';
 
 function Edit(props) {
-  const [files, setFiles] = useState([]);
   const { getFieldProps, validateFields } = props.form;
-  const { user: { editUserAsync } } = useStoreHook();
+  const { user: { editUserAsync, getUserAsync, avatar, phone, sign } } = useStoreHook();
+  const [files, setFiles] = useState([{url: avatar}]);
   useEffect(() => {
     console.log(props);
+    getUserAsync({})
   }, []);
   const handleChange = (files) => {
     console.log(files);
@@ -30,31 +31,23 @@ function Edit(props) {
       }
       // TODO 发送修改
       editUserAsync({
-        img: files[0].url,
-        tel: value.tel,
+        avatar: files[0].url,
+        phone: value.phone,
         sign: value.sign,
       });
     });
   };
   return (
     <div className={'user-edit'}>
-      <List>
-        <List.Item>
-          <ImagePicker files={files} selectable={files.length < 1} onChange={handleChange} />
-        </List.Item>
-        <List.Item>
-          <InputItem {...getFieldProps('tel', { rules: [{ required: true }], initialValue: '123456' })}
-                     placeholder={'电话'}>
-            电话:
-          </InputItem>
-        </List.Item>
-        <List.Item>
-          <InputItem {...getFieldProps('sign', { rules: [{ required: true }], initialValue: '签名' })}
-                     placeholder={'签名'}>
-            签名:
-          </InputItem>
-        </List.Item>
-      </List>
+      <ImagePicker files={files} selectable={files.length < 1} onChange={handleChange} />
+      <InputItem {...getFieldProps('phone', { rules: [{ required: true }], initialValue: phone })}
+                 placeholder={'电话'}>
+        电话:
+      </InputItem>
+      <InputItem {...getFieldProps('sign', { rules: [{ required: true }], initialValue: sign })}
+                 placeholder={'签名'}>
+        签名:
+      </InputItem>
       <Button type={'warning'} style={{ marginTop: '20px' }} onClick={handleSubmit}>修改</Button>
     </div>
   );

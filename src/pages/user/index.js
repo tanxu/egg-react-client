@@ -6,7 +6,7 @@ import './index.less';
 
 export default function(props) {
   const [state, setState] = useState();
-  const { user: { username, tel, sign, avatar, getUserAsync, logoutAsync } } = useStoreHook();
+  const { user: { username, phone, sign, avatar, getUserAsync, logoutAsync } } = useStoreHook();
   useEffect(() => {
     getUserAsync({
       id: 10,
@@ -30,7 +30,7 @@ export default function(props) {
         <div className="set" onClick={handleClick}>设置</div>
         <div className="user">
           <img src={avatar || require('../../assets/yay.jpg')} alt="" />
-          <div className="tel">{tel}</div>
+          <div className="tel">{phone}</div>
           <div className="sign">{sign}</div>
         </div>
       </div>
