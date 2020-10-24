@@ -58,7 +58,7 @@ export default {
       if (result) {
         const from = urlGet('from');
         // cookie.set('user', JSON.stringify(result));
-        localStorage.setItem('token', result.token)
+        localStorage.setItem('token', result.token);
         history.push({
           pathname: from || '/user',
         });
@@ -72,12 +72,22 @@ export default {
       });
       if (result) {
         // cookie.set('user', JSON.stringify(result));
-        localStorage.setItem('token', result.token)
+        localStorage.setItem('token', result.token);
         Toast.success('注册成功');
         history.push({
           pathname: '/login',
         });
       }
+    },
+
+    async logoutAsync(dispatch, rootState, payload) {
+      await Http({
+        url: '/user/logout',
+        body: payload,
+      });
+      Toast.success('退出成功');
+      localStorage.clear();
+      window.location.href = '/login?from=' + window.location.pathname;
     },
   },
 };
