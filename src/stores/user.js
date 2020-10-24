@@ -57,7 +57,8 @@ export default {
       });
       if (result) {
         const from = urlGet('from');
-        cookie.set('user', JSON.stringify(result));
+        // cookie.set('user', JSON.stringify(result));
+        localStorage.setItem('token', result.token)
         history.push({
           pathname: from || '/user',
         });
@@ -70,7 +71,8 @@ export default {
         body: payload,
       });
       if (result) {
-        cookie.set('user', JSON.stringify(result));
+        // cookie.set('user', JSON.stringify(result));
+        localStorage.setItem('token', result.token)
         Toast.success('注册成功');
         history.push({
           pathname: '/login',
