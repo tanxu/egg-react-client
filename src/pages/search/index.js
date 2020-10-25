@@ -9,7 +9,6 @@ import './index.less';
 export default function(props) {
   // 获取url参数
   const { query } = useLocation();
-  console.log(query);
   // 分页状态
   const [page, setPage] = useState(CommonEnum.PAGE);
   const [houseSubmitName, setHouseSubmitName] = useState('');
@@ -28,21 +27,21 @@ export default function(props) {
       endTime: query?.endTime + ' 23:59:59',
     },
     //3, 监听分页数据的修改,发送请求下一页的数据
-    watch: [page.pageNum],
+    watch: [page.pageNum, houseSubmitName],
   });
   useEffect(() => {
     // 4, 监听loading的变化,拼装数据
     if (!housesLoading && houses) {
       if (houses.length) {
         setHouseLists([...houseLists, ...houses]);
-        if (houses.length !== page.pageSize) {
+        if (houses.length < page.pageSize) {
           setShowLoading(false);
         }
       } else {
         setShowLoading(false);
       }
     }
-  }, [housesLoading, houseSubmitName]);
+  }, [housesLoading]);
 
   useImgHook('.item-img', (entries) => {
   }, null);
@@ -55,7 +54,7 @@ export default function(props) {
   * */
   // 1, 监听loading是否展示出来
   useObserverHook('#' + CommonEnum.LOADING_ID, (entries) => {
-    console.log('entries', entries);
+    // console.log('entries', entries);
     if (!housesLoading && entries[0].isIntersecting) {
       // 2, 修改分页数据
       setPage({
@@ -72,16 +71,13 @@ export default function(props) {
     _handleSubmit('');
   };
   const handleSubmit = (value) => {
-    console.log(value);
+    // console.log(value);
     _handleSubmit(value);
   };
   const _handleSubmit = (value) => {
     setHouseName(value);
     setHouseSubmitName(value);
-    setPage({
-      ...page,
-      pageNum: 1,
-    });
+    setPage(CommonEnum.PAGE);
     setHouseLists([]);
   };
 
@@ -89,7 +85,7 @@ export default function(props) {
     <div className='search-page'>
       {/*顶部搜索栏*/}
       <SearchBar placeholder='搜索民宿' value={houseName} onChange={handleChange} onCancel={handleCancle}
-                 onSubmit={handleSubmit}></SearchBar>
+  onSubmit={handleSubmit}/>
       {/*搜索结果*/}
       {
         !houseLists.length ?
@@ -97,9 +93,9 @@ export default function(props) {
           <div className="result">
             {houseLists.map(item => (
               <div className="item" key={item.id}>
-                <img data-src={item.img} src={require('../../assets/blank.png')} alt="" className="item-img" />
+                <img data-src={item?.imgs[0]?.url} src={require('../../assets/blank.png')} alt="" className="item-img" />
                 <div className="item-right">
-                  <div className="title">{item.title}</div>
+                  <div className="title">{item.name}</div>
                   <div className="price">{item.price}</div>
                 </div>
               </div>
