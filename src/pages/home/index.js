@@ -24,9 +24,9 @@ export default function(props) {
         {/*header区域*/}
         <Header />
         {/*search区域*/}
-        <Search citys={citys} citysLoading={citysLoading} />
+        {citys && <Search citys={citys} citysLoading={citysLoading} />}
         {/*hot区域*/}
-        <Hot houses={houses} />
+        {houses && <Hot houses={houses} />}
       </div>
     </ErrorBoundary>
   );
