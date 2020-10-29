@@ -20,8 +20,8 @@ export default function(props) {
     <AwesomeSwiper className='banner' config={config}>
       <div className='swiper-wrapper'>
         {props?.banner?.map(item => (
-          <div className="swiper-slide" key={item}>
-            <img src={item} alt="" />
+          <div className="swiper-slide" key={item.url}>
+            <img src={item.url} alt="" />
           </div>
         ))}
       </div>

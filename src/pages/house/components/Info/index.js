@@ -11,8 +11,8 @@ export default function(props) {
 
   return (
     <div className='info'>
-      <div className="info-title">{props?.info?.title}</div>
-      <div className="info-msg">简介: {props?.info?.msg}</div>
+      <div className="info-title">{props?.info?.name}</div>
+      <div className="info-msg">简介: {props?.info?.info}</div>
       <div className="info-price">价格:{props?.info?.price}</div>
       <div className="info-time">发布时间:{timer(props?.info?.publishTime)}</div>
       <div className="info-time">开始出租:{timer(props?.info?.startTime, '')}</div>
