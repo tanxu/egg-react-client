@@ -10,7 +10,7 @@ import './index.less';
 import { CommonEnum } from '@/enums';
 
 export default function(props) {
-  const { house: { detail, comments, getDetailAsync, getCommentsAsync, reloadComments, reloadCommentsNum, showLoading, resetData } } = useStoreHook();
+  const { house: { order, hasOrderAsync, addOrderAsync, delOrderAsync, detail, comments, getDetailAsync, getCommentsAsync, reloadComments, reloadCommentsNum, showLoading, resetData } } = useStoreHook();
 
   /**
    * 1, 监听loading是否展示出来
@@ -34,6 +34,12 @@ export default function(props) {
     });
   }, []);
 
+  useEffect(()=>{
+    hasOrderAsync({
+      id: query.id,
+    })
+  },[])
+
   useEffect(() => {
     // 获取评论列表逻辑
     getCommentsAsync({
@@ -47,12 +53,24 @@ export default function(props) {
     };
   }, []);
 
+  const handleBtnClick = (id)=>{
+    if(!id){
+      addOrderAsync({
+        id: query?.id
+      })
+    }else{
+      delOrderAsync({
+        id: query?.id
+      })
+    }
+  }
+
   return (
     <div className='house-page'>
       {/*banner*/}
       <Banner banner={detail?.banner} />
       {/*  房屋信息*/}
-      <Info info={detail?.info} />
+      <Info info={detail?.info} order={order} btnClick={handleBtnClick} />
       {/*评论列表*/}
       <Lists lists={comments} showLoading={showLoading} />
       {/*  footer*/}

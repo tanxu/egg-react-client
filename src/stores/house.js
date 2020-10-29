@@ -1,6 +1,17 @@
 import { Http } from '@/utils';
 import { CommonEnum } from '@/enums';
 
+async function handleOrder(url, dispatch, payload) {
+  const result = await Http({
+    url,
+    body: payload,
+  });
+  dispatch({
+    type: 'setOrder',
+    payload: result,
+  });
+}
+
 export default {
   state: {
     detail: {},
@@ -13,6 +24,8 @@ export default {
 
     // 每当 reloadCommentsNum 发生变化,就请求comments接口
     reloadCommentsNum: 0,
+
+    order: null,
   },
   reducers: {
     // 获取民宿详情
@@ -20,6 +33,12 @@ export default {
       return {
         ...state,
         detail: payload,
+      };
+    },
+    setOrder(state, payload) {
+      return {
+        ...state,
+        order: payload,
       };
     },
     // 获取评论列表
@@ -102,6 +121,18 @@ export default {
           payload: {},
         });
       }
+    },
+
+    async hasOrderAsync(dispatch, rootState, payload) {
+      await handleOrder('/orders/hasOrder', dispatch, payload);
+    },
+
+    async addOrderAsync(dispatch, rootState, payload) {
+      await handleOrder('/orders/addOrder', dispatch, payload);
+    },
+
+    async delOrderAsync(dispatch, rootState, payload) {
+      await handleOrder('/orders/delOrder', dispatch, payload);
     },
   },
 };
