@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Modal } from '@/components';
 import { TextareaItem, Button, Toast } from 'antd-mobile';
 import { useStoreHook } from 'think-react-store';
+import {useLocation} from 'umi'
 
 export default function(props) {
   const [show, setShow] = useState(false);
   const [commentVal, setCommentVal] = useState();
   const { house: { addCommentsAsync } } = useStoreHook();
+  const {query} = useLocation()
   useEffect(() => {
 
   }, []);
@@ -24,6 +26,7 @@ export default function(props) {
     if (commentVal) {
       addCommentsAsync({
         comment: commentVal,
+        houseId: query?.id
       });
       setShow(false);
       setCommentVal('');

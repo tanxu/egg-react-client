@@ -15,14 +15,14 @@ export default function(props) {
       <div className="comment-lists">
         {props?.lists?.map(item => (
           <div className="comment-lists_item" key={item.id}>
-            <img src={item.avatar} alt="" className="avatar" />
+            <img src={item.user.avatar} alt="" className="avatar" />
             <div className="right">
               <div className="right-top">
-                <p>{item.username}</p>
+                <p>{item.user.username}</p>
                 <p>{timer(item.createTime)}</p>
               </div>
               <div className="right-bottom">
-                {item.info}
+                {item.msg}
               </div>
             </div>
           </div>
